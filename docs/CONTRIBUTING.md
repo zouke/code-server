@@ -109,13 +109,6 @@ yarn test:standalone-release
 yarn package
 ```
 
-For a faster release build, you can run instead:
-
-```shell
-KEEP_MODULES=1 ./ci/steps/release.sh
-node ./release
-```
-
 ## Structure
 
 The `code-server` script serves an HTTP API for login and starting a remote VS Code process.

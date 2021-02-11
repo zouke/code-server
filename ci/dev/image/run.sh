@@ -13,7 +13,6 @@ main() {
     -e HOME="/src/.home" \
     -e USER="coder" \
     -e GITHUB_TOKEN \
-    -e KEEP_MODULES \
     -e MINIFY \
     -w /src \
     -p 127.0.0.1:8080:8080 \
