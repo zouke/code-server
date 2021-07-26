@@ -15,6 +15,7 @@ main() {
     chmod +x out/node/entry.js
   fi
 
+  mkdir -p ./lib
   if ! [ -f ./lib/coder-cloud-agent ]; then
     echo "Downloading the cloud agent..."
 

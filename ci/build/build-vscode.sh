@@ -8,7 +8,7 @@ MINIFY=${MINIFY-true}
 
 main() {
   cd "$(dirname "${0}")/../.."
-  cd lib/vscode
+  cd node_modules/code-oss-dev
 
   yarn gulp compile-build compile-extensions-build
   yarn gulp optimize --gulpfile ./coder.js

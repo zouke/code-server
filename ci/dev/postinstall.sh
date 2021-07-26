@@ -10,10 +10,10 @@ main() {
   yarn
   cd ..
 
-  cd lib/vscode
-  yarn ${CI+--frozen-lockfile}
+  # cd lib/vscode
+  # yarn ${CI+--frozen-lockfile}
 
-  symlink_asar
+  # symlink_asar
 }
 
 main "$@"

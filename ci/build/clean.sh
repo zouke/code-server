@@ -7,9 +7,9 @@ main() {
 
   git clean -Xffd
 
-  pushd lib/vscode
-  git clean -xffd
-  popd
+  # pushd lib/vscode
+  # git clean -xffd
+  # popd
 }
 
 main "$@"
