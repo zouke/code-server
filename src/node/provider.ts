@@ -10,6 +10,11 @@ import { SocketProxyProvider } from "./socket"
 import { isFile } from "./util"
 import { onMessage, wrapper } from "./wrapper"
 
+/**
+ * Provides an interface to manage a child VS Code process.
+ *
+ * @remark This shouldn't be confused with the actual child process.
+ */
 export class VscodeProvider {
   public readonly serverRootPath: string
   public readonly vsRootPath: string

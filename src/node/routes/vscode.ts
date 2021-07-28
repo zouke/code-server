@@ -10,13 +10,13 @@ import { getFirstString } from "../../common/util"
 import { Feature } from "../cli"
 import { isDevMode, rootPath, version } from "../constants"
 import { authenticated, ensureAuthenticated, redirect, replaceTemplates } from "../http"
+import { VscodeProvider } from "../provider"
 import { getMediaMime, pathToFsPath } from "../util"
-import { VscodeProvider } from "../vscode"
 import { Router as WsRouter } from "../wsRouter"
 
 export const router = Router()
 
-const vscode = new VscodeProvider()
+const vscodeProvider = new VscodeProvider()
 
 router.get("/", async (req, res) => {
   const isAuthenticated = await authenticated(req)
@@ -31,7 +31,7 @@ router.get("/", async (req, res) => {
     await fs.readFile(path.join(rootPath, "src/browser/pages/vscode.html"), "utf8"),
     (async () => {
       try {
-        return await vscode.initialize({ args: req.args, remoteAuthority: req.headers.host || "" }, req.query)
+        return await vscodeProvider.initialize({ args: req.args, remoteAuthority: req.headers.host || "" }, req.query)
       } catch (error) {
         const devMessage = isDevMode ? "It might not have finished compiling." : ""
         throw new Error(`VS Code failed to load. ${devMessage} ${error.message}`)
@@ -91,7 +91,9 @@ router.get("/webview/*", ensureAuthenticated, async (req, res) => {
     return res.send(await fs.readFile(req.params[0].replace(/^vscode-resource(\/file)?/, "")))
   }
   return res.send(
-    await fs.readFile(path.join(vscode.vsRootPath, "out/vs/workbench/contrib/webview/browser/pre", req.params[0])),
+    await fs.readFile(
+      path.join(vscodeProvider.vsRootPath, "out/vs/workbench/contrib/webview/browser/pre", req.params[0]),
+    ),
   )
 })
 
@@ -228,5 +230,5 @@ wsRouter.ws("/", ensureAuthenticated, async (req) => {
 
   req.ws.write(responseHeaders.join("\r\n") + "\r\n\r\n")
 
-  await vscode.sendWebsocket(req.ws, req.query, useCompression)
+  await vscodeProvider.sendWebsocket(req.ws, req.query, useCompression)
 })
