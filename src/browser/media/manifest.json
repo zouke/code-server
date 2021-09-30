@@ -1,18 +1,18 @@
 {
   "name": "code-server",
   "short_name": "code-server",
-  "start_url": "{{BASE}}",
+  "start_url": ".",
   "display": "fullscreen",
   "background-color": "#fff",
   "description": "Run editors on a remote server.",
   "icons": [
     {
-      "src": "{{CS_STATIC_BASE}}/src/browser/media/pwa-icon-192.png",
+      "src": "./src/browser/media/pwa-icon-192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "{{CS_STATIC_BASE}}/src/browser/media/pwa-icon-512.png",
+      "src": "./src/browser/media/pwa-icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
